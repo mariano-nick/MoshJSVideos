@@ -1,0 +1,148 @@
+Javascript Notes
+
+Best practice: put script code at the bottom of the page, since it is read top to bottom	
+	JS can slow down loading of page unnecessarily
+// are used for comments
+HTML is all abount content - JS is all about behavior
+Node is a run time environment for executing javascript code
+
+JS uses three equals === for equality
+	Uses !== for not equal
+	Actually has == as well	
+
+=== is strict equality operator
+	ensures that both variables have the same type and value
+
+== is loose equality
+	the run time looks to the left side, and converts the right to the same type
+	example: true == 1 
+		converts 1 to bool, since left is bool
+		true expression
+		
+Most of the time we use the strict operator
+
+
+let points = 110;
+let type = points > 100 ? 'gold' : 'silver';
+// conditional operator
+// condition ? if true this value : otherwise this value
+
+
+You can use logical operators with non booleans
+	Logical expressions are not always booleans
+	It will just repeat the second operand
+	false || 'Nick'   -- returns 'Nick'
+	Looks for truthy or falsy
+		These are treated like false (falsy) - undefined, null, 0, false, '', NaN (not a number)
+	Everything that's not falsy, is truthy
+	As soon as a truthy is found, that operand is returned
+		false || 1 || 2  -- returns true, since 1 is truthy
+
+bitwise or is a single |
+	1 | 2  -- 3
+	1 = 00000001
+	2 = 00000010
+	1 | 2
+	R = 00000011  -- 3
+	used for things like permissions - read / write / execute
+	if first 5 bits are useless, then read bit, write bit, execute bit
+	read permissions = 00000100 == 4
+	write permission = 00000010 == 2
+	execute permission = 00000001 == 1
+	
+	let myPermission = 0;
+	myPermission = myPermission | readPermission | writePermission;
+	myPermission == 6 (4 + 2)
+	
+	let message = (myPermission & readPermission) ? yes : no;
+		if this is true, you have read permission
+		
+	Bitwise TAKEAWAY - the or operator | can add capabilities, the and operator & can check those capabilities
+	
+
+Javascript has operator precedence
+
+
+for in loop is used to iterate over the properties of an object
+	can also be used when you don't know the property name at runtime
+	Example:
+		const person = {
+		name: 'Nick',
+		age: 30
+		};
+
+		for (let key in person)
+			console.log(person[key]);
+		
+		// Output:
+		// Nick
+		// 30
+		
+
+Remember the conditional statement - can help have more compact code
+	function max (a, b)
+		return (a > b) ? a : b;
+	no need to write a conditional if you're just returning true/false
+		function isLandscape(width, height)
+			return (width > height);
+
+
+If you have nested loops, break the nested one out into another function - you usually can
+
+
+Javascript objects are full of key value pairs, those values can be functions
+	If a function is part of an object, we call it a method
+
+Factory functions = something like createCircle, returns a circle object
+	Uses camelCase
+	We can just define the circle object, without naming it
+		function createCircle() {
+			return {
+				object implementation;
+			};
+		}
+	we can also define functions in an object better than using a key, value pairs
+		object {
+			myFunction(){
+				function implementation;
+			}
+		}
+
+Constructor functions = 
+	Uses PascalNotation
+	this is a reference to an object that is executing this bit of code
+	Basically acts like a class definition
+		function Circle(radius){
+			this.radisu = radius;
+			this.draw = function(){
+				console.log('draw')
+			}
+		}
+		let circle = new Circle(2);
+
+
+Both constructor functions and factory functions are the same, it's just a matter of opinion which you use
+	Constructor functions are more familiar to people that know C#/Java, so just use that
+	
+
+Objects are dynamic - you can always add or remove properties/functions whenever you want
+Even if an object is a constant, you can still add or remove properties/functions from it
+	You just cannot reassign that varaible name to another object
+
+When using an object literal notation, the Javascript engine calls an Object contructor function for you
+	let x = {}
+	is the same as
+	let x = new Object();
+
+Other built in constructors
+	new String(); == '' or ""
+	new Boolean(); == true or false
+	new Number(); == 1, 2, 3
+	
+Every object has a constructor property, and that refernces the function that was used to create that object
+
+
+Functions are just objects too 
+	They have a default constructor - Function() - seen with function.constructor
+	They have a name property - the name of the function
+	
