@@ -146,3 +146,34 @@ Functions are just objects too
 	They have a default constructor - Function() - seen with function.constructor
 	They have a name property - the name of the function
 	
+
+Functions are just objects, they have built in properties and methods, along with any that you create in that function
+
+const circle1 = new Circle(1) -- this is the same as Circle.call({}, 1)
+	When we use the call function, we pass in an empty object, which sets the context for 'this' in the function
+	This exact same thing happens when we use the new keyword, just behind the scenes
+	
+We can use the apply function to pass arguments in an array
+	Circle.call({}, 1, 2, 3, 4) -- this is the exact same as Circle.apply({}, [1, 2, 3, 4]
+	The apply function is great if you already have all the arguments in an array
+
+In Javascript, functions are objects!!
+
+2 categories of types -- value types (aka primitive types) and reference types
+	Value types = Number, String, Boolean, Symbol, undefined, null
+	Reference types = Objects, Functions, Array -- both Functions and Arrays are actually objects as well
+
+
+Value types variables are independent of other value type variables
+	When you set one value type to another, the value is just copied from one to the other
+
+Reference types do not do this, we instead store the value of that varible in memory, and then reference the memory location
+	The variable does NOT contain the actual value for that variable
+	
+Primitives are copied by their value
+Objects are copied by their reference
+
+Scope works similarly as you'd expect in other languages, a function holds the scope of only those variables inside/passed to the function
+
+
+	
